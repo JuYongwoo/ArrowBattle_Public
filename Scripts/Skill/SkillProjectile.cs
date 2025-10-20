@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillProjectile : MonoBehaviour, PooledObejct
+public class SkillProjectile : MonoBehaviour, PooledObject
 {
     [Header("스프라이트 각도 보정(도)")]
     [SerializeField] private float spriteAngleOffset = -45f;
