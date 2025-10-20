@@ -16,13 +16,13 @@ public class Enemy : CharacterBase
     {
         base.Start();
         moveLoop = StartCoroutine(CoMove());
-        InvokeRepeating(nameof(randomSkill), 0f, 1.1f); //랜덤 스킬 사용
+        InvokeRepeating(nameof(RandomSkill), 0f, 1.1f); //랜덤 스킬 사용
     }
     protected void Update()
     {
         if (state == CharacterStateEnum.Idle) //아무 행동 하지 않을 시 일반 공격
         {
-            if (skillCoroutine == null) prepareSkill(Skill.Attack);
+            if (skillCoroutine == null) PrepareSkill(Skill.Attack);
         }
     }
     private void OnDestroy()
@@ -30,20 +30,20 @@ public class Enemy : CharacterBase
         if (moveLoop != null) StopCoroutine(moveLoop);
     }
     
-    private void randomSkill()
+    private void RandomSkill()
     {
         if( state == CharacterStateEnum.Moving) return; //움직일땐 스킬 사용 안함
         List<int> skillsList = new List<int>() { 1, 2, 3, 4, 5 }; //Attack, Skill1, Skill2
         System.Random random = new System.Random();
         Skill randomSkill = (Skill)random.Next(skillsList.Count);
-        prepareSkill(randomSkill);
+        PrepareSkill(randomSkill);
     }
 
     public override void GetDamaged(float damageAmount)
     {
         base.GetDamaged(damageAmount); // CharacterBase의 getDamaged() 호출
-        ManagerObject.instance.actionManager.OnSetEnemyHPInUI(stat.Current.CurrentHP, stat.Current.MaxHP);
-        if (stat.Current.CurrentHP <= 0)
+        ManagerObject.instance.actionManager.OnSetEnemyHPInUI(Stat.Current.CurrentHP, Stat.Current.MaxHP);
+        if (Stat.Current.CurrentHP <= 0)
         {
             ManagerObject.instance.actionManager.OnEndGame(ResultStateEnum.Victory);
         }
