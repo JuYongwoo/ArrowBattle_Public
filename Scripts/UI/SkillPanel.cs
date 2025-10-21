@@ -21,7 +21,6 @@ public class SkillPanel : MonoBehaviour
     private readonly Dictionary<int, Coroutine> txtCo = new();
     private readonly Dictionary<int, float> baseHeight = new();   // FadeImg 기준 높이
 
-
     private void Awake()
     {
         map = Util.MapEnumChildObjects<SkillPanelEnum, GameObject>(gameObject);
@@ -42,8 +41,8 @@ public class SkillPanel : MonoBehaviour
 
     private void Start()
     {
-        ManagerObject.instance.actionManager.CooldownUIEvent -= StartCooldown;
-        ManagerObject.instance.actionManager.CooldownUIEvent += StartCooldown;
+        ManagerObject.instance.eventManager.CooldownUIEvent -= StartCooldown;
+        ManagerObject.instance.eventManager.CooldownUIEvent += StartCooldown;
 
         for (int i = 1; i <= 5; i++)
         {
@@ -53,7 +52,7 @@ public class SkillPanel : MonoBehaviour
 
     private void OnDestroy()
     {
-        ManagerObject.instance.actionManager.CooldownUIEvent -= StartCooldown;
+        ManagerObject.instance.eventManager.CooldownUIEvent -= StartCooldown;
 
     }
 

@@ -39,7 +39,7 @@ public abstract class CharacterBase : MonoBehaviour
         {
             Stat.Current.CurrentHP = 0;
         }
-        ManagerObject.instance.actionManager.OnPlayAudioClip(Stat.Current.HitSound, 0.3f, false);
+        ManagerObject.instance.eventManager.OnPlayAudioClip(Stat.Current.HitSound, 0.3f, false);
     }
 
     protected virtual void SetState(CharacterStateEnum s)

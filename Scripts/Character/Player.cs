@@ -9,14 +9,14 @@ public class Player : CharacterBase
     protected override void Awake()
     {
         base.Awake();
-        ManagerObject.instance.actionManager.UseSkillEvent -= PrepareSkill; // InputManager의 attack 이벤트에 Attack 메서드 구독
-        ManagerObject.instance.actionManager.UseSkillEvent += PrepareSkill; // InputManager의 attack 이벤트에 Attack 메서드 구독
-        ManagerObject.instance.actionManager.LeftRightMoveEvent -= Move; // InputManager의 leftRightMove 이벤트에 Move 메서드 구독
-        ManagerObject.instance.actionManager.LeftRightMoveEvent += Move; // InputManager의 leftRightMove 이벤트에 Move 메서드 구독
-        ManagerObject.instance.actionManager.SetIdleEvent -= SetIdle;
-        ManagerObject.instance.actionManager.SetIdleEvent += SetIdle;
-        ManagerObject.instance.actionManager.GetCastingSkillEvent -= GetCastingKill;
-        ManagerObject.instance.actionManager.GetCastingSkillEvent += GetCastingKill;
+        ManagerObject.instance.eventManager.UseSkillEvent -= PrepareSkill; // InputManager의 attack 이벤트에 Attack 메서드 구독
+        ManagerObject.instance.eventManager.UseSkillEvent += PrepareSkill; // InputManager의 attack 이벤트에 Attack 메서드 구독
+        ManagerObject.instance.eventManager.LeftRightMoveEvent -= Move; // InputManager의 leftRightMove 이벤트에 Move 메서드 구독
+        ManagerObject.instance.eventManager.LeftRightMoveEvent += Move; // InputManager의 leftRightMove 이벤트에 Move 메서드 구독
+        ManagerObject.instance.eventManager.SetIdleEvent -= SetIdle;
+        ManagerObject.instance.eventManager.SetIdleEvent += SetIdle;
+        ManagerObject.instance.eventManager.GetCastingSkillEvent -= GetCastingKill;
+        ManagerObject.instance.eventManager.GetCastingSkillEvent += GetCastingKill;
     }
 
     private void SetIdle()
@@ -31,10 +31,10 @@ public class Player : CharacterBase
 
     private void OnDestroy()
     {
-        ManagerObject.instance.actionManager.UseSkillEvent -= PrepareSkill; // InputManager의 attack 이벤트에 Attack 메서드 구독
-        ManagerObject.instance.actionManager.LeftRightMoveEvent -= Move; // InputManager의 leftRightMove 이벤트에 Move 메서드 구독
-        ManagerObject.instance.actionManager.SetIdleEvent -= SetIdle;
-        ManagerObject.instance.actionManager.GetCastingSkillEvent -= GetCastingKill;
+        ManagerObject.instance.eventManager.UseSkillEvent -= PrepareSkill; // InputManager의 attack 이벤트에 Attack 메서드 구독
+        ManagerObject.instance.eventManager.LeftRightMoveEvent -= Move; // InputManager의 leftRightMove 이벤트에 Move 메서드 구독
+        ManagerObject.instance.eventManager.SetIdleEvent -= SetIdle;
+        ManagerObject.instance.eventManager.GetCastingSkillEvent -= GetCastingKill;
     }
 
     protected void Update()
@@ -48,10 +48,10 @@ public class Player : CharacterBase
     public override void GetDamaged(float damageAmount)
     {
         base.GetDamaged(damageAmount); // CharacterBase의 getDamaged() 호출
-        ManagerObject.instance.actionManager.OnSetPlayerHPInUI(Stat.Current.CurrentHP, Stat.Current.MaxHP);
+        ManagerObject.instance.eventManager.OnSetPlayerHPInUI(Stat.Current.CurrentHP, Stat.Current.MaxHP);
         if (Stat.Current.CurrentHP <= 0)
         {
-            ManagerObject.instance.actionManager.OnEndGame(ResultStateEnum.Defeat);
+            ManagerObject.instance.eventManager.OnEndGame(ResultStateEnum.Defeat);
         }
     }
 
@@ -60,7 +60,7 @@ public class Player : CharacterBase
         if (base.TryBeginCooldown(skill)) //부모 실행하고
         {
             //UI 추가실행 후 true 반환
-            ManagerObject.instance.actionManager.OnCooldownUI((int)skill, ManagerObject.instance.resourceManager.SkillDatas.Result.GetSkillDataById(skill).skillCoolTime);
+            ManagerObject.instance.eventManager.OnCooldownUI((int)skill, ManagerObject.instance.resourceManager.SkillDatas.Result.GetSkillDataById(skill).skillCoolTime);
             return true;
         }
         else
