@@ -35,7 +35,7 @@ public class SkillPanel : MonoBehaviour
             var skillEnum = System.Enum.Parse<Skill>($"Skill{i}");
 
             // 아이콘 적용
-            map[panelEnum].GetComponent<Image>().sprite = ManagerObject.instance.resourceManager.SkillDatas.Result.GetSkillDataById(skillEnum).skillIcon;
+            map[panelEnum].GetComponent<Image>().sprite = ManagerObject.instance.resourceManager.SkillDatas.Result.GetSkillDataById(skillEnum).SkillIcon;
         }
     }
 

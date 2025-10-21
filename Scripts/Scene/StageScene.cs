@@ -53,18 +53,18 @@ public class StageScene : MonoBehaviour
     public void Loadstage(int stageID)
     {
         //스테이지 별 SO에서 정의된 캐릭터ID를 토대로 캐릭터 ID 별 SO 속 정보에 따라 씬에 생성
-        foreach (var spawnCharacters in ManagerObject.instance.resourceManager.gameModeData.Result.GetStageDatabyStageID(stageID).characterTypeEnum)
+        foreach (var spawnCharacters in ManagerObject.instance.resourceManager.gameModeData.Result.GetStageDatabyStageID(stageID).CharacterTypeEnum)
         {
             CharacterStatData stat = ManagerObject.instance.resourceManager.characterDatas.Result.GetCharacterDataById(spawnCharacters);
-            GameObject go = MonoBehaviour.Instantiate(stat.characterPrefab, stat.startPosition, Quaternion.identity);
+            GameObject go = MonoBehaviour.Instantiate(stat.CharacterPrefab, stat.StartPosition, Quaternion.identity);
             //if (go.CompareTag("Player")) player = go;
             //else if (go.CompareTag("Enemy")) enemy = go;
         }
 
         //BGM 재생
-        ManagerObject.instance.eventManager.OnPlayAudioClip(ManagerObject.instance.resourceManager.gameModeData.Result.GetStageDatabyStageID(stageID).bgm, 0.2f, true);
+        ManagerObject.instance.eventManager.OnPlayAudioClip(ManagerObject.instance.resourceManager.gameModeData.Result.GetStageDatabyStageID(stageID).Bgm, 0.2f, true);
 
-        gameLeftTime = ManagerObject.instance.resourceManager.gameModeData.Result.GetStageDatabyStageID(stageID).gameTime;
+        gameLeftTime = ManagerObject.instance.resourceManager.gameModeData.Result.GetStageDatabyStageID(stageID).GameTime;
     }
 
     public void EndGame(ResultStateEnum resultStateEnum)
@@ -74,8 +74,8 @@ public class StageScene : MonoBehaviour
         if (_timerRunner != null)
             _timerRunner.StopRepeating();
 
-        if (resultStateEnum == ResultStateEnum.Victory) ManagerObject.instance.eventManager.OnPlayAudioClip(ManagerObject.instance.resourceManager.gameModeData.Result.victoryMusic, 0.3f, false);
-        else ManagerObject.instance.eventManager.OnPlayAudioClip(ManagerObject.instance.resourceManager.gameModeData.Result.defeatMusic, 0.2f, false);
+        if (resultStateEnum == ResultStateEnum.Victory) ManagerObject.instance.eventManager.OnPlayAudioClip(ManagerObject.instance.resourceManager.gameModeData.Result.GetVictoryMusic(), 0.3f, false);
+        else ManagerObject.instance.eventManager.OnPlayAudioClip(ManagerObject.instance.resourceManager.gameModeData.Result.GetDefeatMusic(), 0.2f, false);
 
         Time.timeScale = 0f; //게임 일시정지
         ManagerObject.instance.eventManager.OnGameResultUI(resultStateEnum); //ResultPanel의 UI를 세팅하는 델리게이트 호출

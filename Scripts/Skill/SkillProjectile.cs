@@ -83,7 +83,7 @@ public class SkillProjectile : MonoBehaviour, PooledObject
         var stat = other.GetComponent<CharacterBase>();
         if (stat != null)
         {
-            stat.GetDamaged(Data.skillDamage);
+            stat.GetDamaged(Data.SkillDamage);
             ManagerObject.instance.poolManager.DestroyPooled(gameObject);
         }
     }
