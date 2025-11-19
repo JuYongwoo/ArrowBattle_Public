@@ -1,0 +1,7 @@
+{
+	"name": "JYW.ArrowBattle.Utils",
+	"references": [
+	"Unity.Addressables",
+    "Unity.ResourceManager"
+	]
+}

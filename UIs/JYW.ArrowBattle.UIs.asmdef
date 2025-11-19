@@ -1,0 +1,11 @@
+{
+	"name": "JYW.ArrowBattle.UIs",
+	"references": [
+		"JYW.ArrowBattle.Utils",
+		"JYW.ArrowBattle.Managers",
+		"JYW.ArrowBattle.Commons",
+		"Unity.TextMeshPro",
+		"JYW.ArrowBattle.SOs"
+
+		]
+}

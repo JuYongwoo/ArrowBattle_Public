@@ -1,0 +1,11 @@
+{
+	"name": "JYW.ArrowBattle.Scenes",
+	"references": [
+		"JYW.ArrowBattle.Managers",
+		"JYW.ArrowBattle.Commons",
+		"JYW.ArrowBattle.Utils",
+		"JYW.ArrowBattle.SOs",
+		"JYW.ArrowBattle.Characters",
+		"JYW.ArrowBattle.Skills"
+		]
+}

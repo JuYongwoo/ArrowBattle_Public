@@ -1,0 +1,8 @@
+{
+	"name": "JYW.ArrowBattle.Skills",
+	"references": [
+		"JYW.ArrowBattle.Managers",
+		"JYW.ArrowBattle.Characters",
+		"JYW.ArrowBattle.Commons"
+	]
+}

@@ -1,0 +1,6 @@
+{
+	"name": "JYW.ArrowBattle.Commons",
+		"references": [
+		"JYW.ArrowBattle.Utils"
+		]
+}
